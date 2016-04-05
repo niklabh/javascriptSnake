@@ -39,6 +39,7 @@ function draw() {
 	queue.forEach(function(node){
 		document.getElementById(["p", node.i, node.j].join("-")).style.backgroundColor = "red";
 	});
+	console.log(JSON.stringify(queue));
 }
 
 function state() {
@@ -46,29 +47,29 @@ function state() {
 		case "left":
 			queue.pop();
 			queue.unshift({
-				i: queue[1].i,
-				j: queue[1].j === 0 ? iter - 1 : queue[1].j - 1
+				i: queue[0].i,
+				j: queue[0].j === 0 ? iter - 1 : queue[1].j - 1
 			});
 			break;
 		case "up":
 			queue.pop();
 			queue.unshift({
-				i: queue[1].i === 0 ? iter - 1 : queue[1].i - 1,
-				j: queue[1].j
+				i: queue[0].i === 0 ? iter - 1 : queue[1].i - 1,
+				j: queue[0].j
 			});
 			break;
 		case "down":
 			queue.pop();
 			queue.unshift({
-				i: queue[1].i === iter - 1 ? 0 : queue[1].i + 1,
-				j: queue[1].j
+				i: queue[0].i === iter - 1 ? 0 : queue[1].i + 1,
+				j: queue[0].j
 			});
 			break;
 		case "right":
 			queue.pop();
 			queue.unshift({
-				i: queue[1].i,
-				j: queue[1].j === iter - 1 ? 0 : queue[1].j + 1
+				i: queue[0].i,
+				j: queue[0].j === iter - 1 ? 0 : queue[1].j + 1
 			});
 			break;
 		default:
@@ -78,7 +79,7 @@ function state() {
 function loop() {
 	draw();
 	state();
-	setTimeout(loop, 100);
+	setTimeout(loop, 1000);
 }
 
 document.onkeypress = function(evt) {
@@ -99,7 +100,6 @@ document.onkeypress = function(evt) {
     		direction = "right";
     		break;
     	default:
-    		clearInterval(interval);
     }
 };
 
