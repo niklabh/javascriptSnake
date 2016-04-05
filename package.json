@@ -1,0 +1,15 @@
+{
+  "name": "javascriptsnake",
+  "version": "1.0.0",
+  "description": "Snake Game in javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [
+    "snake",
+    "javascript"
+  ],
+  "author": "Nikhil Ranjan (niklabh)",
+  "license": "ISC"
+}
